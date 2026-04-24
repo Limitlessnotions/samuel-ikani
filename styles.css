@@ -1041,3 +1041,71 @@ object-position: 100% 30%;
   position: relative;
   z-index: 2;
 }
+/* =========================
+   MOBILE HAMBURGER
+========================= */
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  width: 25px;
+  height: 3px;
+  background: #fff;
+  border-radius: 2px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-inner {
+    position: relative;
+  }
+
+  /* HIDE MENU INITIALLY */
+  .nav-right {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    background: #0B1F3B;
+
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+    gap: 15px;
+
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-right.active {
+    opacity: 1;
+    pointer-events: all;
+    transform: translateY(0);
+  }
+
+  .menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .menu a {
+    font-size: 16px;
+  }
+
+  .btn.small {
+    margin-top: 10px;
+  }
+}

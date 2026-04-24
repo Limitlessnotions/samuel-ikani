@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initScrollEffects();
     initKnowledgeTabs();
       initHeroParallax();
+       initMobileMenu();
   });
 });
 
@@ -134,5 +135,15 @@ function initHeroParallax() {
   window.addEventListener("scroll", () => {
     const scroll = window.scrollY;
     bg.style.transform = `scale(1.1) translateY(${scroll * 0.15}px)`;
+  });
+}
+function initMobileMenu() {
+  const toggle = document.getElementById("menu-toggle");
+  const nav = document.getElementById("nav-right");
+
+  if (!toggle || !nav) return;
+
+  toggle.addEventListener("click", () => {
+    nav.classList.toggle("active");
   });
 }
