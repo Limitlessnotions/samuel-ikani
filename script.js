@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded", () => {
     initAnimations();
     initScrollEffects();
     initKnowledgeTabs();
-      initHeroParallax();
-       initMobileMenu();
+    initHeroParallax();
+    initMobileMenu(); // ✅ single source of truth
   });
 });
 
@@ -20,7 +20,6 @@ function loadHeader() {
       return;
     }
 
-    // Detect if page is inside /articles/
     const isArticle = window.location.pathname.includes("/articles/");
     const headerPath = isArticle ? "../header.html" : "header.html";
 
@@ -35,7 +34,21 @@ function loadHeader() {
 }
 
 /* =========================
-   SCROLL ANIMATIONS (STAGGER)
+   MOBILE MENU (FIXED)
+========================= */
+function initMobileMenu() {
+  const toggle = document.getElementById("menu-toggle");
+  const menu = document.getElementById("menu");
+
+  if (!toggle || !menu) return;
+
+  toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+  });
+}
+
+/* =========================
+   SCROLL ANIMATIONS
 ========================= */
 function initAnimations() {
   const elements = document.querySelectorAll(".fade-in");
@@ -80,7 +93,7 @@ function initScrollEffects() {
 }
 
 /* =========================
-   KNOWLEDGE TABS (PRO VERSION)
+   KNOWLEDGE TABS
 ========================= */
 function initKnowledgeTabs() {
   const tabs = document.querySelectorAll("[data-tab]");
@@ -101,19 +114,14 @@ function initKnowledgeTabs() {
     }
   }
 
-  /* CLICK EVENTS */
   tabs.forEach(tab => {
     tab.addEventListener("click", () => {
       const tabName = tab.getAttribute("data-tab");
-
       activateTab(tabName);
-
-      // update URL without reload
       history.replaceState(null, "", `?tab=${tabName}`);
     });
   });
 
-  /* LOAD FROM URL */
   const params = new URLSearchParams(window.location.search);
   const tabFromURL = params.get("tab");
 
@@ -124,8 +132,9 @@ function initKnowledgeTabs() {
     activateTab(firstTab);
   }
 }
+
 /* =========================
-   HERO PARALLAX (ELITE)
+   HERO PARALLAX
 ========================= */
 function initHeroParallax() {
   const bg = document.querySelector(".hero-bg");
@@ -137,19 +146,3 @@ function initHeroParallax() {
     bg.style.transform = `scale(1.1) translateY(${scroll * 0.15}px)`;
   });
 }
-function initMobileMenu() {
-  const toggle = document.getElementById("menu-toggle");
-  const nav = document.getElementById("nav-right");
-
-  if (!toggle || !nav) return;
-
-  toggle.addEventListener("click", () => {
-    nav.classList.toggle("active");
-  });
-}
-const toggle = document.querySelector('.menu-toggle');
-const menu = document.querySelector('.menu');
-
-toggle.addEventListener('click', () => {
-  menu.classList.toggle('active');
-});

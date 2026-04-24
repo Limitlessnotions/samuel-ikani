@@ -1232,3 +1232,47 @@ object-position: 100% 30%;
   }
 
 }
+/* FIX MOBILE MENU OVERLAY */
+@media (max-width: 768px) {
+
+  .nav {
+    position: relative;
+    z-index: 1000;
+  }
+
+  .menu {
+    display: none;
+  }
+
+  .menu.active {
+    display: flex;
+    flex-direction: column;
+
+    position: fixed;   /* 🔥 KEY FIX */
+    top: 70px;
+    left: 0;
+    width: 100%;
+
+    background: #0B1F3B;
+    padding: 20px;
+
+    z-index: 9999;
+  }
+
+}
+@media (max-width: 768px) {
+
+  .nav-right {
+    position: static;
+  }
+
+}
+.menu-toggle {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+}
