@@ -111,7 +111,18 @@ section {
   color: var(--primary-blue);
   border-radius: 6px;
 }
+.nav {
+  position: relative;
+  z-index: 1000;
+}
 
+.hero::before {
+  z-index: 0;
+}
+
+.hero-overlay {
+  pointer-events: none;
+}
 /* =========================
    HERO
 ========================= */
@@ -126,6 +137,7 @@ section {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 102, 0.85);
+  z-index: 0;
 }
 
 .hero-content {
@@ -1070,37 +1082,6 @@ object-position: 100% 30%;
     position: relative;
   }
 
-  /* HIDE MENU INITIALLY */
-  .nav-right {
-    position: absolute;
-    top: 70px;
-    right: 0;
-    width: 100%;
-    background: #0B1F3B;
-
-    flex-direction: column;
-    align-items: center;
-    padding: 20px 0;
-    gap: 15px;
-
-    opacity: 0;
-    pointer-events: none;
-    transform: translateY(-10px);
-    transition: all 0.3s ease;
-  }
-
-  .nav-right.active {
-    opacity: 1;
-    pointer-events: all;
-    transform: translateY(0);
-  }
-
-  .menu {
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-  }
-
   .menu a {
     font-size: 16px;
   }
@@ -1128,13 +1109,13 @@ object-position: 100% 30%;
   .menu.active {
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: fixed;
     top: 70px;
-    right: 0;
+    left: 0;
     width: 100%;
     background: #0B1F3B;
     padding: 20px;
-    z-index: 999;
+    z-index: 999999;
   }
 
   .menu a {
@@ -1142,20 +1123,6 @@ object-position: 100% 30%;
     border-bottom: 1px solid rgba(255,255,255,0.1);
   }
 
-  /* ===== HAMBURGER ===== */
-  .menu-toggle {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-  }
-
-  .menu-toggle span {
-    width: 25px;
-    height: 3px;
-    background: #fff;
-    display: block;
-  }
 
   /* ===== HERO (ALL PAGES) ===== */
   .hero,
@@ -1231,48 +1198,4 @@ object-position: 100% 30%;
     padding: 40px 0;
   }
 
-}
-/* FIX MOBILE MENU OVERLAY */
-@media (max-width: 768px) {
-
-  .nav {
-    position: relative;
-    z-index: 1000;
-  }
-
-  .menu {
-    display: none;
-  }
-
-  .menu.active {
-    display: flex;
-    flex-direction: column;
-
-    position: fixed;   /* 🔥 KEY FIX */
-    top: 70px;
-    left: 0;
-    width: 100%;
-
-    background: #0B1F3B;
-    padding: 20px;
-
-    z-index: 9999;
-  }
-
-}
-@media (max-width: 768px) {
-
-  .nav-right {
-    position: static;
-  }
-
-}
-.menu-toggle {
-  display: none;
-}
-
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
 }
