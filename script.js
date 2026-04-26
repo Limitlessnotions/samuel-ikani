@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     initKnowledgeTabs();
     initHeroParallax();
     initMobileMenu(); // ✅ single source of truth
+    initAccordion(); 
   });
 });
 
@@ -144,5 +145,26 @@ function initHeroParallax() {
   window.addEventListener("scroll", () => {
     const scroll = window.scrollY;
     bg.style.transform = `scale(1.1) translateY(${scroll * 0.15}px)`;
+  });
+}
+function initAccordion() {
+  const items = document.querySelectorAll(".accordion-item");
+
+  items.forEach(item => {
+    const header = item.querySelector(".accordion-header");
+
+    header.addEventListener("click", () => {
+
+      const isActive = item.classList.contains("active");
+
+      // 🔥 CLOSE ALL FIRST (auto-close feature)
+      items.forEach(i => i.classList.remove("active"));
+
+      // 🔥 OPEN ONLY IF IT WAS CLOSED
+      if (!isActive) {
+        item.classList.add("active");
+      }
+
+    });
   });
 }
