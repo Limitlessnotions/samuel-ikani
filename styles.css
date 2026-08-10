@@ -1957,3 +1957,8 @@ p{
     height: 80px;
   }
 }
+.book-item img {
+  
+  object-fit: contain;
+  display: block;
+}
